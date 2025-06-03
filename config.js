@@ -18,7 +18,7 @@ const MAX_RECONNECT_ATTEMPTS = parseInt(process.env.MAX_RECONNECT_ATTEMPTS || '5
 const DATABASE_URL = process.env.DATABASE_URL === undefined ? './bot.db' : process.env.DATABASE_URL;
 const DEBUG = process.env.DEBUG === undefined ? false : convertToBool(process.env.DEBUG);
 
-const sequelize = DATABASE_URL === './bot.db'
+const sequelize = DATABASE_URL === 'postgresql://neondb_owner:npg_P0NqknRwAl9S@ep-bitter-term-a5vafgtto-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require'
     ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: DEBUG })
     : new Sequelize(DATABASE_URL, { dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }, logging: DEBUG });
 
@@ -45,7 +45,7 @@ const baseConfig = {
     VERSION: 'v6.0.0',
     ALIVE: process.env.ALIVE || "https://i.imgur.com/KCnoMM2.jpg Hey {sender}, I'm alive \n Uptime: {uptime}",
     BLOCK_CHAT: process.env.BLOCK_CHAT || '',
-    PM_ANTISPAM: convertToBool(process.env.PM_ANTISPAM) || '',
+    PM_ANTISPAM: convertToBool(process.env.PM_ANTISPAM) || 'false',
     ALWAYS_ONLINE: convertToBool(process.env.ALWAYS_ONLINE) || false,
     MANGLISH_CHATBOT: convertToBool(process.env.MANGLISH_CHATBOT) || false,
     ADMIN_ACCESS: convertToBool(process.env.ADMIN_ACCESS) || false,
